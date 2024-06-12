@@ -7,7 +7,13 @@ app.set('view engine', 'ejs');
 app.set('views', './views')     // views 폴더안에 파일.ejs
 
 app.get('/', function(req, res) {
-    res.render('index')
+    res.render('index', {title: '홈'})
+})
+app.get('/about', function(req, res) {
+    res.render('about', {title: '소개'})
+})
+app.get('/create', function(req, res) {
+    res.render('create', {title: '작성'})
 })
 
 
