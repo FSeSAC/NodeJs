@@ -54,3 +54,35 @@
 // 5-2-1. 고민 끝 문장이 출력
 // 5-2-2. product, price 변수에 값이 할당
 
+
+// ******************************
+// #3. 콜백함수(callback)로 문제를 해결해보자!
+// - 다른 함수의 실행이 끝난 뒤에 실행되는 함수
+// - js에서 어떤 함수의 매개변수로 쓰일 수 있다
+
+// 목표: 콘솔로그 하나 찍고, 3초뒤 '고민끝'이랑 상품명, 가격이 정상적으로 출력
+let product;
+let price;
+
+function goMart() {
+    console.log('마트에 가서 어떤 음료를 살지 고민 중..')
+}
+
+function pinkDrink(callback) {
+    // setTimeout을 이용해 3초를 기다린 후에 코드 실행
+    setTimeout(function () {
+        console.log('고민 끝');
+        product = '제로 콜라';
+        price = 3000;
+        callback(product, price);
+    }, 3000);
+}
+
+
+function pay (product, price) {
+    console.log(`상품명: ${product}, 가격: ${price}`);
+}
+
+
+goMart();
+pinkDrink(pay);
