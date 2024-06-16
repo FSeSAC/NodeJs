@@ -52,4 +52,30 @@ async function exec() {
     }
 }
 
-exec();
+// exec();
+
+
+function setColor(color) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // document.body.style.backgroundColor = color;
+            console.log(color);
+            resolve();
+        }, 1000)
+    })
+}
+
+async function selectColor() {
+    try {
+        await setColor('red');
+        await setColor('orange');
+        await setColor('yellow');
+        await setColor('green');
+        await setColor('blue');
+    } catch (err) {
+        console.log('err');
+    }
+}
+
+
+selectColor();
