@@ -34,10 +34,20 @@
         <button type="button" onclick="fetchPost();">fetch post 방식 요청</button>
     </form>
 
+    <button type="button" onclick="getTodos">외부 API 이용</button>
     <div class="result"></div>
 
     <script>
         const resultBox = document.querySelector('.result');
+
+        function getTodos() {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+            resultBox.textContent = `${json.title} (${json.completed ? 'done' : 'doing'})`
+        })
+        }
 
         function fetchGet() {
             console.log('click fetchGet btn!');
