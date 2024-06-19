@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Axios CDN -->
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+     <link rel="stylesheet" href="/static/css/thumbnail.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+
+    <form action="upload" method="POST" enctype="multipart/form-data">
+        <input type="id" name="id" placeholder="ID" ><br>
+        <input type="password" name="pw" placeholder="PW" ><br>
+        <input type="text" name="name" placeholder="이름" ><br>
+        <input type="text" name="age" placeholder="나이 "><br>
+        <input type="file" name="thumbnail" id="thumbnail"><br>
+        <input type="text" name="title"><br>
+        <button type="buttons" onclick="uploadThumbnail();">회원가입</button>
+    </form>
+
+    <img src="" alt="">
+    <script src="/static/js/thumbnail.js"></script>
+
+</body>
+</html>
