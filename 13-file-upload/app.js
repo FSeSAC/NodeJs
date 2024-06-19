@@ -49,11 +49,13 @@ app.post("/upload", uploadDetail.single('userfile'), (req, res) => {
     //     size: 117682
     // }
 
-    res.send('Success upload!');
+    // res.send('Success upload!');
+
+    res.render('uploaded', {title: req.body.title, src: req.file.path});
 
     // 파일 탐색기 -> uploads 폴더가 생성!
     // 확장자 없이 파일명이 자동 저장 (multer객체를 생성 시, dest 옵션 외에 설정 안해서)
-    // 
+    // 파일 탐색기에서 png, jpg 등의 확장자를 붙여보면 업로드 된 파일을 식별 가능
 });
 
 
