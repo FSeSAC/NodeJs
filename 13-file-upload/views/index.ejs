@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/thumbnail.css">
 </head>
 <body>
     <h1><%= title %></h1>
@@ -20,16 +25,26 @@
     <form action="/upload/array" method="POST" enctype="multipart/form-data">
         <input type="file" name="banana" multiple><br>
         <input type="text" name="title">
-        <button type="submit">업로드</button>
+        <button type="submit">업로드</button>   
     </form>
 
     <h2>Multi file upload case2</h2>
     <form action="/upload/fields" method="POST" enctype="multipart/form-data">
-        <input type="file" name="kiwi" multiple><br>
+        <input type="file" name="kiwi"><br>
         <input type="text" name="title1"><br>
-        <input type="file" name="orange" multiple><br>
+        <input type="file" name="orange"><br>
         <input type="text" name="title2"><br>
-        <button type="submit">업로드</button>
+        <button type="submit">업로드</button>   
     </form>
+
+    <h2>동적 파일 업로드</h2>
+    <input type="file" name="thumbnail" id="thumbnail">
+    <button type="button" onclick="uploadThumbnail();">업로드</button>
+    <br>
+
+    <!-- 썸네일 업로드 내용을 바로 업로드 -->
+    <img src="" alt=""><br>
+
+    <script src="/static/js/thumbnail.js"></script>
 </body>
 </html>
