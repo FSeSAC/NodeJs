@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/thumbnail.css">
+</head>
+<body>
+    <!-- <h1><%= title %></h1> -->
+
+    <h2>Single file upload</h2>
+    <!-- multer 이용 시, 반드시 enctype="multipart/form-data" 의 폼이어야 함!! -->
+    <!-- form action은 정적일때만 필요 -->
+    <form action="/uploaded" method="POST" enctype="multipart/form-data">
+        <input type="id" name="id" placeholder="ID" ><br>
+        <input type="password" name="pw" placeholder="PW" ><br>
+        <input type="text" name="name" placeholder="이름" ><br>
+        <input type="text" name="age" placeholder="나이 "><br>
+        <input type="file" name="thumbnail" id="thumbnail">
+        <!-- <input type="text" name="title"> -->
+        <!-- onclick='' 옵션은 동적일때만 필요 -->
+        <button type="submit" onclick="uploadThumbnail();">업로드</button>
+    </form>
+   
+
+
+    <!-- 썸네일 업로드 내용을 바로 업로드 -->
+    <img src="" alt=""><br>
+
+    <script src="/static/js/thumbnail.js"></script>
+    
+</body>
+</html>
