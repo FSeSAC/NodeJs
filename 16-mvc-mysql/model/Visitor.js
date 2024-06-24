@@ -1,4 +1,5 @@
-// // (임시) DB로부터 방명록 데이터를 받아옴
+// [before]
+// (임시) DB로부터 방명록 데이터를 받아옴
 // exports.getVisitors = () => {
 //     return [
 //       { id: 1, name: '홍길동', comment: '내가 왔다.' },
@@ -6,25 +7,46 @@
 //     ];
 // };    
 
-
+// [after]
 const mysql = require('mysql');
 
-// DB 연결 객체 - conn
 const conn = mysql.createConnection({
-  host:'localhost',
+  host: 'localhost',
   user: 'user',
-  pw: '1234',
+  password: '516089',
   database: 'codingon'
-});
-
+}); // database 연결 객체
 
 exports.getVisitors = (callback) => {
-  conn.query(`SELECT * FROM visitor`, (err, rows) => {
+  conn.query(`select * from visitor`, (err, rows) => {
     if (err) {
       throw err;
     }
-
-    console.log('model/visitors.js ->', rows);
-    callback(rows);
+    
+    console.log('model/Visitor.js >> ', rows);
+    callback(rows)
   })
+};    
+
+exports.postVisitor = (data, callback) => {
+  conn.query(`insert into visitor(name, comment) values ('${data.name}', '${data.comment}')`, 
+    (err, rows) => {
+      if (err) {
+        throw err;
+      }
+
+      console.log('model/Visitor.js >> ', rows);
+      // model/Visitor.js >>  OkPacket {
+      //   fieldCount: 0,
+      //   affectedRows: 1,
+      //   insertId: 4, // -> pk
+      //   serverStatus: 2,
+      //   warningCount: 0,
+      //   message: '',
+      //   protocol41: true,
+      //   changedRows: 0
+      // }
+      callback(rows.insertId)
+    }
+  )
 }
