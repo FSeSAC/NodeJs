@@ -13,7 +13,7 @@ const mysql = require('mysql');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'user',
-  password: '516089',
+  password: '1234',
   database: 'codingon'
 }); // database 연결 객체
 
