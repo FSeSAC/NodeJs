@@ -37,6 +37,13 @@ exports.postVisitor = (req, res) => {
   });
 }
 
+exports.getVisitor = (req, res) => {
+  // req.params.id: // 조회해야할 id
+  Visitor.getVisitor(req.params.id, (result) => {
+    res.send(result);
+  }); 
+}
+
 
 exports.deleteVisitor = (req, res) => {
   console.log(req.body);
@@ -45,5 +52,14 @@ exports.deleteVisitor = (req, res) => {
     console.log('controller/CVisitor.js >> ', result);
     
     res.send({ result }); // { result: result }
+  })
+}
+
+
+exports.patchVisitor = (req, res) => {
+  console.log(req.body);
+  Visitor.patchVisitor(req.body, (result) => {
+    console.log('controller/CVisitor.js >> ', result);
+    res.send({ result });
   })
 }

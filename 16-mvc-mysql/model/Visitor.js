@@ -51,6 +51,17 @@ exports.postVisitor = (data, callback) => {
   )
 }
 
+exports.getVisitor = (targetId, callback) => {
+  conn.query(`select * from visitor where id=${targetId}`, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log('model/Visitor.js >> ', rows);
+    callback(rows[0]);
+  })
+}
+
 exports.deleteVisitor = (targetId, callback) => {
   // targetId: 삭제해야할 visitor id
   conn.query(`delete from visitor where id=${targetId}`, (err, rows) => {
@@ -71,4 +82,17 @@ exports.deleteVisitor = (targetId, callback) => {
     // }
     callback(true); // 삭제
   })
+}
+
+exports.patchVisitor = (updateData, callback) => {
+  const {id, name, comment} = updateData;
+  conn.query(`update visitor set name='${name}', comment='${comment}' where id='${id}'`,
+    (err, rows) => {
+      if (err) {
+        throw err;
+      }
+
+      console.log('model/Visitor.js >> ', rows);
+      callback(true); // 수정
+    });
 }
