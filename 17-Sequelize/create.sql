@@ -39,12 +39,12 @@ insert into Profile(position, salary, createdAt, updatedAt, player_id) values
 select * from Profile;
 
 
-insert into game(date, location, createdAt, updatedAt) values
+insert into Game(date, location, createdAt, updatedAt) values
   ('2023-10-1', 'seoul', now(), now()),
   ('2023-10-3', 'london', now(), now()),
   ('2023-10-5', 'la', now(), now());
 
-insert into teamgame(team_id, game_id, createdAt, updatedAt) values
+insert into TeamGame(team_id, game_id, createdAt, updatedAt) values
   (1, 1, now(), now()), 
   (2, 1, now(), now()), 
   (2, 2, now(), now()), 
