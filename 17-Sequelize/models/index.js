@@ -10,27 +10,27 @@ const sequelize = new Sequelize(
 ); // sequelize 객체
 
 // 모델 불러오기
-const PlayerModel = require('./player')(sequelize, Sequelize); 
-const TeamModel = require('./team')(sequelize, Sequelize); 
-const ProfileModel = require('./profile')(sequelize, Sequelize); 
+const PlayerModel = require('./Player')(sequelize, Sequelize); 
+const TeamModel = require('./Team')(sequelize, Sequelize); 
+const ProfileModel = require('./Profile')(sequelize, Sequelize); 
 
 // 모델간 관계 연결
 // 1) Player : Profile = 1 : 1
 // 하나의 선수당 하나의 프로필을 가짐
 PlayerModel.hasOne(ProfileModel, { 
-  // CASCADE 옵션: Player가 삭제/수정시 Profile도 함께 삭제/수정
+  // CASCADE 옵션: Player가 삭제/수정되는 경우 Profile도 함께 삭제/업데이트
   onDelete: 'CASCADE', 
   onUpdate: 'CASCADE',
-  // ProfileModel에 'player_id'이름의 fk 생성
+  // ProfileModel에 'player_id' 이름의 fk 생성
   foreignKey: 'player_id',
   // PlayerModel 'player_id' 컬럼 참조
   sourceKey: 'player_id'
 });
 ProfileModel.belongsTo(PlayerModel, {
-   // ProfileModel에 'player_id' fk 생성
+  // ProfileModel에 'player_id' fk 생성
   foreignKey: 'player_id',
   // 참조하게 될 PlayerModel의 키는 'player_id' 
-  sourceKey: 'player_id'
+  targetKey: 'player_id'
 })
 
 // 2) Team : Player = 1: N
@@ -47,8 +47,6 @@ PlayerModel.belongsTo(TeamModel, {
   // 참조하게 될 TeamModel의 키는 'team_id'
   targetKey: 'team_id'
 });
-
-
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
