@@ -43,3 +43,13 @@ exports.updateUser = (data, callback) => {
         callback(true);
     })
 }
+
+// 회원 삭제
+exports.deleteUser = (req, res) => {
+    conn.query(`delete from user where id=${data.id}`, (err, rows) => {
+        if (err) throw err;
+
+        console.log('model/deleteUser ->', rows);
+        callback(true);
+    })
+}
