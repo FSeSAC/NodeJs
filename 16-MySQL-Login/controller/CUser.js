@@ -1,4 +1,4 @@
-const Visitor = require('../model/Visitor');
+const User = require('../model/User');
 
 
 exports.main = (req, res) => {
