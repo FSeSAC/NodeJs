@@ -32,3 +32,14 @@ exports.getUser = (data, callback) => {
         callback(rows[0]);
     })
 }
+
+// 회원 정보 수정
+exports.updateUser = (data, callback) => {
+    const {id, name, password} = data; // id를 가져오는건 userid는 불변해야해서
+    conn.query(`update user set name='${name}' ,password='${password}' where id = ${id}`, (err, rows) => {
+        if (err) throw err;
+        
+        console.log('model/updateUser ->', rows);
+        callback(true);
+    })
+}
