@@ -3,5 +3,19 @@
     <%- include('include/include', { title: 'Login' })%>
 <body>
     <h1>로그인</h1>
+
+    <form name="form_login">
+        <label for="userid">ID</label>
+        <input id="userid" type="text" name="userid" required> <br>
+        <label for="password">PW</label>
+        <input id="password" type="text" name="password" required> <br>
+        <button type="button" onclick="login();">Login</button>
+    </form>
+
+    <script>
+        function login() {
+            // login 함수
+        }
+      </script>
 </body>
 </html>
