@@ -21,6 +21,7 @@
       async function register() {
         const form = document.forms['form_register']
 
+        // 폼 유효성 검사
         if (!form.checkValidity()) {
           form.reportValidity()
           return
@@ -38,8 +39,25 @@
 
           const { data } = signInResponse;
 
-          if (data && Object.keys(data).length > 0)
-          
+          if (data && Object.keys(data).length > 0) {
+            alert('이미 존재하는 아이디입니다.')
+            return
+          }
+
+          const signInCheckResponse = await axios ({
+            method: 'post',
+            url: `/url/signup`,
+            data: {
+              userid : form.userid.value,
+              name: form.name.value,
+              pw: form.pw.value
+            }
+          })
+          console.log('res', res.data);
+
+          if (signInCheckResponse.data.id) {
+            document.location.href = '/user/signin'
+          }
  
         } catch (err) {
           console.log(err);
