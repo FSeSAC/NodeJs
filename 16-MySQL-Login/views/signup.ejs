@@ -28,34 +28,35 @@
         }
 
         try {
-          const signInResponse = await axios ({
+          // const signInResponse = await axios ({
+          //   method: 'post',
+          //   url: `/user/signin`,
+          //   data: {
+          //     userid: form.userid.value,
+          //   }
+          // });
+          // console.log('signInResponse', signInResponse.data);
+
+          // const { data } = signInResponse;
+
+          // if (data && Object.keys(data).length > 0) {
+          //   alert('이미 존재하는 아이디입니다.')
+          //   return
+          // }
+          console.log(form.password.value);
+
+          const res = await axios ({
             method: 'post',
-            url: `/user/signin`,
-            data: {
-              userid: form.userid.value,
-            }
-          });
-          console.log('signInResponse', signInResponse.data);
-
-          const { data } = signInResponse;
-
-          if (data && Object.keys(data).length > 0) {
-            alert('이미 존재하는 아이디입니다.')
-            return
-          }
-
-          const signInCheckResponse = await axios ({
-            method: 'post',
-            url: `/url/signup`,
+            url: `/user/signup`,
             data: {
               userid : form.userid.value,
               name: form.name.value,
-              pw: form.pw.value
+              pw: form.password.value
             }
           })
           console.log('res', res.data);
 
-          if (signInCheckResponse.data.id) {
+          if (res.data.id) {
             document.location.href = '/user/signin'
           }
  

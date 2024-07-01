@@ -9,7 +9,8 @@ const conn = mysql.createConnection({
 
 // 회원 가입
 exports.postUser = (data, callback) => {
-    conn.query(`insert into user(userid, name, password) values('${data.userid}', '${data.name}', '${data.password} )`, (err, rows) => {
+    console.log(data);
+    conn.query(`insert into user(userid, name, pw) values('${data.userid}', '${data.name}', '${data.pw}' )`, (err, rows) => {
         if (err) throw err;
         
         console.log('model/postUser ->', rows);
