@@ -19,11 +19,11 @@
     <script>
       // 회원가입 함수
       async function register() {
-        const form = document.forms['form_register']
+        const singupForm = document.forms['form_register']
 
         // 폼 유효성 검사
-        if (!form.checkValidity()) {
-          form.reportValidity()
+        if (!singupForm.checkValidity()) {
+          singupForm.reportValidity()
           return
         }
 

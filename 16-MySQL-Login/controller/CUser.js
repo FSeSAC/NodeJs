@@ -27,4 +27,8 @@ exports.signinPage = (req, res) => {
 }
 
 // 로그인 로직
-exports.postSignin = () => {}
+exports.postSignin = (req, res) => {
+  User.postSignin(req.body, (result) => {
+    res.send({ data: result})
+  })
+}
