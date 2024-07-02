@@ -12,8 +12,8 @@ exports.signupPage = (req, res) => {
   res.render('signup');
 }
 
-// 회원 가입하기
-exports.postUser = (req, res) => {
+// 회원가입 로직
+exports.postSignup = (req, res) => {
   console.log('req.body', req.body);
   User.postUser(req.body, (result) => {
     console.log('controller/postUser ->', result);
@@ -21,7 +21,10 @@ exports.postUser = (req, res) => {
   })
 }
 
-
+// 로그인 페이지
 exports.signinPage = (req, res) => {
   res.render('signin');
 }
+
+// 로그인 로직
+exports.postSignin = () => {}

@@ -8,7 +8,7 @@ const conn = mysql.createConnection({
 })
 
 // 회원 가입
-exports.postUser = (data, callback) => {
+exports.postSignup = (data, callback) => {
     console.log(data);
     conn.query(`insert into user(userid, name, pw) values('${data.userid}', '${data.name}', '${data.pw}' )`, (err, rows) => {
         if (err) throw err;
@@ -21,7 +21,7 @@ exports.postUser = (data, callback) => {
 
 
 // 로그인 회원 조회
-exports.getUser = (data, callback) => {
+exports.postSignin = (data, callback) => {
     let query;
     if('password' in data) query = `select * from user where userid = '${data.userid}' and password = '${data.password}'`
     else query = `select * from user where userid='${data.userid}'`

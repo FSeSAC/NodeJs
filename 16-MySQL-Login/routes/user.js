@@ -7,7 +7,7 @@ router.get('/', controller.main);
 
 router.get('/signup', controller.signupPage)
 
-router.post('/signup', controller.postUser);
+router.post('/signup', controller.postSignup);
 
 router.get('/signin', controller.signinPage);
 
