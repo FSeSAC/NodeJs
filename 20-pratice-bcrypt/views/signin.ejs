@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <%- include('include/include', { title: 'Login' })%>
+<body>
+    <h1>로그인</h1>
+
+    <form name="form_info" action="/user/profile" method="POST">
+        <input type="hidden" name="userid">
+    </form>
+
+    <form name="form_login">
+        <label for="userid">ID</label>
+        <input id="userid" type="text" name="userid" required> <br>
+        <label for="pw">PW</label>
+        <input id="pw" type="text" name="pw" required> <br>
+        <button type="button" onclick="login();">Login</button>
+    </form>
+
+    <a href="/user/signup">Register</a>
+
+    <script>
+        async function login() {
+            const loginForm = document.forms['form_login']
+            const infoForm = document.forms['form_info']
+
+            if (!loginForm.checkValidity()) {
+                loginForm.reportValidity()
+                return
+            }
+
+            try {
+                const resLogin = await axios({
+                    method: 'post',
+                    url: '/user/signin',
+                    data: {
+                        userid: loginForm.userid.value,
+                        pw: loginForm.pw.value
+                    }
+                })
+                console.log('resLogin ->', resLogin);
+
+                if (resLogin.data) {
+                    alert('로그인 성공');
+                    infoForm.userid.value = loginForm.userid.value;
+                    infoForm.submit();
+                    infoForm.reset();
+                } else {
+                    alert('로그인 실패!');
+                    loginForm.userid.value = '';
+                    loginForm.pw.value = '';
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+      </script>
+</body>
+</html>

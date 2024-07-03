@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: 'signup' })%>
+<body>
+    <h1>회원가입 페이지</h1>
+    <form name="form_register">
+      <label for="userid">ID</label>
+      <input id="userid" type="text" name="userid" required> <br>
+      <label for="password">PW</label>
+      <input id="password" type="text" name="password" required> <br>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" required /><br />
+
+      <button type="button" onclick="register();">Register</button>
+    </form>
+
+    <a href="/signin">Login</a>
+
+    <script>
+      // 회원가입 함수
+      async function register() {
+        const singupForm = document.forms['form_register']
+
+        // 폼 유효성 검사
+        if (!singupForm.checkValidity()) {
+          singupForm.reportValidity()
+          return
+        }
+
+        try {
+
+          console.log(singupForm.password.value);
+
+          const res = await axios ({
+            method: 'post',
+            url: `/signup`,
+            data: {
+              userid : singupForm.userid.value,
+              name: singupForm.name.value,
+              pw: singupForm.password.value
+            }
+          })
+          console.log('res', res.data);
+
+          if (res.data.id) {
+            document.location.href = '/signin'
+          }
+ 
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    </script>
+</body>
+</html>
