@@ -29,25 +29,31 @@ io.on('connection', (socket) => {
     // socket.id : 소켓 고유 아이디 (브라우저 탭 단위)
     // (참고) 소켓 연결 완료.
 
-    // [실습 1]
-    socket.on('hello', (data) => {
-        console.log(data);
-        console.log(`${data.who} : ${data.msg}`);
-        socket.emit('hellokr', {who: 'hello', msg: '안녕!!!'})
-    })
+   // // [실습 1]
+    // socket.on('hello', (data) => {
+    //     console.log(data);
+    //     console.log(`${data.who} : ${data.msg}`);
+    //     socket.emit('hellokr', {who: 'hello', msg: '안녕!!!'})
+    // })
 
-    socket.on('study', (data) => {
-        console.log(data);
-        console.log(`${data.who} : ${data.msg}`);
-        socket.emit('studykr', {who: 'study', msg: '공부해라!!!' })
-    })
+    // socket.on('study', (data) => {
+    //     console.log(data);
+    //     console.log(`${data.who} : ${data.msg}`);
+    //     socket.emit('studykr', {who: 'study', msg: '공부해라!!!' })
+    // })
 
 
-    socket.on('bye', (data) => {
-        console.log(data);
-        console.log(`${data.who} : ${data.msg}`);
-        socket.emit('byekr', {who: 'bye', msg: '잘가라!!!' })
-    })
+    // socket.on('bye', (data) => {
+    //     console.log(data);
+    //     console.log(`${data.who} : ${data.msg}`);
+    //     socket.emit('byekr', {who: 'bye', msg: '잘가라!!!' })
+    // })
+
+
+    // [실습 3] 채팅창 입장 안내 문구
+    io.emit('notice', `${socket.id} 님이 입장하셨습니다.`);
+
+
 })
 
 server.listen(PORT, () => {
