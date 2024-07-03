@@ -53,6 +53,18 @@ io.on('connection', (socket) => {
     // [실습 3] 채팅창 입장 안내 문구
     io.emit('notice', `${socket.id} 님이 입장하셨습니다.`);
 
+    // [실습 3-2] 채팅창 입장 문구 socket.id -> nickname
+    // emit() from server
+    //  - socket.emit(event_name, data) : 해당 클라이언트에게만 이벤트, 데이터 전송
+    //  - io.emit(event_name, data) : 서버에 접속된 모든 클라이언트에게 전송
+    //  - io.to(소켓아이디).emit(event_name, data) : 소켓아이디에 해당하는 클라이언트에게만 전송 (귓속말)
+
+    socket.on('setNick', (nick) => {
+        console.log(`닉네임 설정 완료 :: ${nick}님 입장`);
+
+        // [실습 3-2-1]
+        // 프론트에서 입력한 nick이 nickObjs 객체에 존재하는지 검사
+    })
 
 })
 
