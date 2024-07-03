@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socket.io 채팅</title>
+    <!-- cdn -->
+    <!-- 서버가 실행 중이지 않아도 클라이언트 라이브러리를 사용 할 수 있음. -->
+    <!-- <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script> -->
+
+    <!-- Socket.IO 서버가 제공하는 클라이언트 라이브러리 -->
+    <!-- 서버에서 자동 제공됨. Socket.IO 서버가 실행 중일 때만 작동함. -->
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>My Chat</h1>
+
+    <!-- [실습 1] 각 버튼을 누를 때 마다 서버로 메시지 보내기 -->
+    <button onclick="sayHello()">Hello</button>
+    <button onclick="sayStudy()">Study</button>
+    <button onclick="sayBye()">Bye</button>
+    <p id="from-server"></p>
+
+
+    <script>
+        let socket = io(); 
+        // 소켓 사용을 위한 객체 생성.
+
+        socket.on('connect', () => {
+            console.log('클라이언트 연결 완료 ::', socket.id);
+            // console.log(socket);
+        })
+        // (참고) 소켓 연결 완료.
+
+        // [실습 1]
+        function sayHello() {
+            socket.emit('hello', {who: 'client', msg: 'hello'})
+        }
+
+        function sayStudy() {
+            socket.emit('study', {who: 'client', msg: 'study'})
+        }
+
+        function sayBye() {
+            socket.emit('bye', {who: 'client', msg: 'bye'})
+        }
+
+        socket.on('hellokr', (data) => {
+            console.log("data >> ", data); // {who: 'hello', msg: '안녕!!!'}
+            document.querySelector('#from-server').textContent = `${data.who} : ${data.msg}`
+        })
+
+        socket.on('studykr', (data) => {
+            console.log('data ->', data);
+            document.querySelector('#from-server').textContent = `${data.who} : ${data.msg}`
+        })
+
+        socket.on('byekr', (data) => {
+            console.log('data ->', data);
+            document.querySelector('#from-server').textContent = `${data.who} : ${data.msg}`
+        })
+    </script>
+</body>
+</html>
