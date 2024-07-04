@@ -15,8 +15,8 @@ exports.signupPage = (req, res) => {
 // 회원가입 로직
 exports.postSignup = (req, res) => {
   console.log('req.body', req.body);
-  User.postUser(req.body, (result) => {
-    console.log('controller/postUser ->', result);
+  User.postSignup(req.body, (result) => {
+    console.log('controller/postSignup ->', result);
     res.send({ id: result });
   })
 }
@@ -28,7 +28,9 @@ exports.signinPage = (req, res) => {
 
 // 로그인 로직
 exports.postSignin = (req, res) => {
+  console.log('req.body', req.body);
   User.postSignin(req.body, (result) => {
+    console.log(result);
     res.send({ data: result})
   })
 }
