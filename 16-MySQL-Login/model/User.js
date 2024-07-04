@@ -15,7 +15,7 @@ exports.postSignup = (data, callback) => {
         
         console.log('model/postUser ->', rows);
         callback(rows);
-    } )
+    })
 }
 
 
@@ -23,13 +23,14 @@ exports.postSignup = (data, callback) => {
 // 로그인 회원 조회
 exports.postSignin = (data, callback) => {
     let query;
-    if('password' in data) query = `select * from user where userid = '${data.userid}' and password = '${data.password}'`
+    console.log('postSingin/data', data);
+    if('pw' in data) query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
     else query = `select * from user where userid='${data.userid}'`
 
-    conn.query(`select * from user`, (err, rows) => {
+    conn.query(query, (err, rows) => {
         if (err) throw err;
 
-        console.log('model/getUser ->', rows);
+        console.log('model/postSignin ->', rows);
         callback(rows[0]);
     })
 }
