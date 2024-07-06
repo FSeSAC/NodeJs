@@ -13,10 +13,8 @@ router.get('/signin', controller.signinPage);
 
 router.post('/signin', controller.postSignin);
 
-router.post('/profile', controller.profilePage);
+router.patch('/profile/edit', controller.patchProfile);
 
-router.patch('/profile/edit', controller);
-
-router.delete('/profile/delete', controller);
+router.delete('/profile/delete', controller.deleteUser);
 
 module.exports = router;
