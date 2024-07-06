@@ -14,7 +14,7 @@
       <button type="button" onclick="register();">Register</button>
     </form>
 
-    <a href="/user/signin">Login</a>
+    <a href="/signin">Login</a>
 
     <script>
       // 회원가입 함수
@@ -28,26 +28,12 @@
         }
 
         try {
-          // const signInResponse = await axios ({
-          //   method: 'post',`
-          //   url: `/user/signin`,
-          //   data: {
-          //     userid: form.userid.value,
-          //   }
-          // });
-          // console.log('signInResponse', signInResponse.data);
 
-          // const { data } = signInResponse;
-
-          // if (data && Object.keys(data).length > 0) {
-          //   alert('이미 존재하는 아이디입니다.')
-          //   return
-          // }
           console.log(singupForm.password.value);
 
           const res = await axios ({
             method: 'post',
-            url: `/user/signup`,
+            url: `/signup`,
             data: {
               userid : singupForm.userid.value,
               name: singupForm.name.value,
@@ -57,7 +43,7 @@
           console.log('res', res.data);
 
           if (res.data.id) {
-            document.location.href = '/user/signin'
+            document.location.href = '/signin'
           }
  
         } catch (err) {

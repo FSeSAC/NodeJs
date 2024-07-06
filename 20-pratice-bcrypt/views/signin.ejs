@@ -37,9 +37,9 @@
                         pw: loginForm.pw.value
                     }
                 })
-                console.log('resLogin ->', resLogin?.data);
+                console.log('resLogin ->', resLogin);
 
-                if (resLogin.data && Object.keys(resLogin.data).length > 0) {
+                if (resLogin.data) {
                     alert('로그인 성공');
                     infoForm.userid.value = loginForm.userid.value;
                     infoForm.submit();

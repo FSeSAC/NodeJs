@@ -16,8 +16,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 // const upload = multer({
 //     dest: 'uploads/',
 // });
-const uploadDetail = multer({
-    storage: multer.diskStorage({
+const uploadDetail = ({
+    storage: multer.dmulteriskStorage({
         destination(req, file, done) {
             done(null, 'uploads/'); // 파일을 저장할 경로
         },

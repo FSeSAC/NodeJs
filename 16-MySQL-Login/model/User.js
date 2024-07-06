@@ -15,7 +15,7 @@ exports.postSignup = (data, callback) => {
         
         console.log('model/postUser ->', rows);
         callback(rows);
-    } )
+    })
 }
 
 
@@ -27,9 +27,11 @@ exports.postSignin = (data, callback) => {
         query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
         console.log(data);
     } 
+    console.log('postSingin/data', data);
+    if('pw' in data) query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
     else query = `select * from user where userid='${data.userid}'`
 
-    conn.query(`select * from user`, (err, rows) => {
+    conn.query(query, (err, rows) => {
         if (err) throw err;
 
         console.log('model/getUser ->', rows);
@@ -38,6 +40,8 @@ exports.postSignin = (data, callback) => {
         } else {
             callback(null);  // 로그인 실패 시 null 반환
         }
+        console.log('model/postSignin ->', rows);
+        callback(rows[0]);
     })
 }
 
