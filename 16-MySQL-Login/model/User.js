@@ -23,21 +23,28 @@ exports.postSignup = (data, callback) => {
 // 로그인 회원 조회
 exports.postSignin = (data, callback) => {
     let query;
-    if('password' in data) query = `select * from user where userid = '${data.userid}' and password = '${data.password}'`
+    if('pw' in data){
+        query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
+        console.log(data);
+    } 
     else query = `select * from user where userid='${data.userid}'`
 
     conn.query(`select * from user`, (err, rows) => {
         if (err) throw err;
 
         console.log('model/getUser ->', rows);
-        callback(rows[0]);
+        if (rows.length > 0) {
+            callback(rows[0]);  // 로그인 성공 시 사용자 데이터 반환
+        } else {
+            callback(null);  // 로그인 실패 시 null 반환
+        }
     })
 }
 
 // 회원 정보 수정
-exports.updateUser = (data, callback) => {
-    const {id, name, password} = data; // id를 가져오는건 userid는 불변해야해서
-    conn.query(`update user set name='${name}' ,password='${password}' where id = ${id}`, (err, rows) => {
+exports.patchProfile = (data, callback) => {
+    const {id, name, pw} = data; // id를 가져오는건 userid는 불변해야해서
+    conn.query(`update user set name='${name}' ,pw='${pw}' where id = ${id}`, (err, rows) => {
         if (err) throw err;
         
         console.log('model/updateUser ->', rows);
