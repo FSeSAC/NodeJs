@@ -28,7 +28,6 @@ exports.signinPage = (req, res) => {
 // 로그인 로직
 exports.postSignin = (req, res) => {
   console.log('req.body', req.body);
-  console.log('req.body :', req.body);
   
   User.postSignin(req.body, (result) => {
     console.log(result);

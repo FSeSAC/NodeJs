@@ -23,10 +23,7 @@ exports.postSignup = (data, callback) => {
 // 로그인 회원 조회
 exports.postSignin = (data, callback) => {
     let query;
-    if('pw' in data){
-        query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
-        console.log(data);
-    } 
+    
     console.log('postSingin/data', data);
     if('pw' in data) query = `select * from user where userid = '${data.userid}' and pw = '${data.pw}'`
     else query = `select * from user where userid='${data.userid}'`
@@ -41,7 +38,6 @@ exports.postSignin = (data, callback) => {
             callback(null);  // 로그인 실패 시 null 반환
         }
         console.log('model/postSignin ->', rows);
-        callback(rows[0]);
     })
 }
 
