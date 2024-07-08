@@ -71,7 +71,9 @@ function getUserList(room) {
 }
 
 
-
+// [5] 채팅방 리스트
+// 채팅방 목록 초기화
+const roomList = [];
 
 
 io.on('connection', (socket) => {
@@ -80,6 +82,10 @@ io.on('connection', (socket) => {
     // 웹 브라우저가 접속이 되면 고유한 id 값이 생성됨.
     // ==> socket.id 로 확인 가능.
     console.log("서버 연결 완료 ::" , socket.id);
+
+    // [5] 채팅방 목록 미리보기
+    // 전부에게 보여져야함.
+    io.emit('roomList', roomList);
 
     // [2] 채팅방 만들기
     socket.on('create', (res) => {
@@ -104,6 +110,15 @@ io.on('connection', (socket) => {
         const userList = getUserList(res.roomName);
         console.log('userList >>>> ', userList);
         io.to(res.roomName).emit('userList', userList)
+
+        // [5] 채팅방 목록 갱신
+        if (!roomList.includes(res.roomName)) {
+            // 중복이 아니라면 추가!
+            roomList.push(res.roomName);
+            // 갱신 된 목록 
+            console.log("res.roomName [5] >>>>> ", roomList);
+            io.emit('roomList', roomList);
+        }
     })
 
     
